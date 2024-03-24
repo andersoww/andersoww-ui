@@ -2,14 +2,36 @@
   "name": "@repo/andersoww-ui",
   "version": "0.0.0",
   "private": true,
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "types": "./dist/cjs/index.d.cts",
+  "module": "./dist/esm/index.js",
   "exports": {
-    "./button": "./src/button.tsx",
-    "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    ".": {
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      },
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      }
+    }
   },
   "scripts": {
+    "build:cjs": "tsup --format cjs --external react",
+    "build:esm": "tsup --format esm --external react",
+    "build": "concurrently \"npm run build:cjs\" \"npm run build:esm\"",
+    "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -21,6 +43,11 @@
     "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
     "react": "^18.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "tsup": "^8.0.2",
+    "concurrently": "^8.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
