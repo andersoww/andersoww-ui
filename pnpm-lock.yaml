@@ -26,7 +26,7 @@ importers:
 
   apps/docs:
     dependencies:
-      '@repo/andersoww-ui':
+      '@repo/roque-ui':
         specifier: workspace:*
         version: link:../../packages/ui
       next:
@@ -69,7 +69,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@repo/andersoww-ui':
+      '@repo/roque-ui':
         specifier: workspace:*
         version: link:../../packages/ui
       next:
