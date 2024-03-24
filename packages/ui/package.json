@@ -1,7 +1,6 @@
 {
   "name": "@repo/andersoww-ui",
   "version": "0.0.0",
-  "private": true,
   "files": [
     "dist"
   ],

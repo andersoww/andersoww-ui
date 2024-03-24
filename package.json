@@ -1,5 +1,4 @@
 {
-  "name": "andersoww-ui",
   "private": true,
   "scripts": {
     "build": "turbo run build",
