@@ -24,9 +24,13 @@
     "build:cjs": "tsup --format cjs --external react",
     "build:esm": "tsup --format esm --external react",
     "build": "concurrently \"npm run build:cjs\" \"npm run build:esm\"",
-    "dev": "tsup --watch",
-    "lint": "eslint . --max-warnings 0",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "build:watch:esm": "npm run build:esm -- --watch",
+    "build:watch:cjs": "npm run build:cjs -- --watch",
+    "build:watch": "concurrently \"npm:build:watch:*\"",
+    "dev": "npm run build:watch",
+    "clean": "rimraf .turbo node_modules dist",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
   },
   "peerDependencies": {
     "react": ">=18",
