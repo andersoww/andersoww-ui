@@ -24,9 +24,6 @@ function ExampleOTP() {
                 <form className="flex flex-col gap-4 items-center w-full">
                     <Otp.Root
                         className="py-2"
-                        handleSubmitOtp={(e) => {
-                            console.log(e);
-                        }}
                     >
                         <Otp.Input />
                         <Otp.Input />

@@ -3,27 +3,17 @@ import {
     ChangeEvent,
     Children,
     ClipboardEvent,
-    InputHTMLAttributes,
-    KeyboardEvent,
-    PropsWithChildren,
     ReactElement,
     cloneElement,
     forwardRef,
     useCallback,
     useRef,
-    useState,
+    useState
 } from "react";
 import { ClientOnly } from "../ClientOnly";
+import { ExtendedKeyboardEvent, IOtpInput, IOtpRoot } from "./types";
 
 
-interface IOtpRoot extends PropsWithChildren {
-    className?: string;
-    handleSubmitOtp?: (value: string) => void;
-}
-
-export interface ExtendedKeyboardEvent<T> extends KeyboardEvent<T> {
-    target: EventTarget & T;
-}
 
 const OtpRoot = ({ className, children, handleSubmitOtp }: IOtpRoot) => {
     const otpBoxReference = useRef<HTMLInputElement[]>([]);
@@ -103,22 +93,14 @@ const OtpRoot = ({ className, children, handleSubmitOtp }: IOtpRoot) => {
     );
 }
 
-
-interface IOtpInput extends InputHTMLAttributes<HTMLInputElement> {
-    index?: number;
-    onChangeOtp?: (e: ChangeEvent, index?: number) => void;
-    onKeyUpChangeOtp?: (
-        e?: KeyboardEvent<HTMLInputElement>,
-        index?: number
-    ) => void;
-    onPasteOtp?: (e: ClipboardEvent<HTMLInputElement>) => void;
-}
-
 const OtpInput = forwardRef<HTMLInputElement, IOtpInput>(
     (
-        { className, index, onKeyUpChangeOtp, onChangeOtp, onPasteOtp, ...rest },
+        props,
         ref
     ) => {
+
+        const { className, index, onChangeOtp, onKeyUpChangeOtp, onPasteOtp, ...rest } = props
+
         return (
             <ClientOnly
                 fallback={

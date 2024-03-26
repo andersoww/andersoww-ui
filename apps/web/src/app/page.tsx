@@ -1,4 +1,4 @@
-'use client'
+
 
 import { ExampleOTP } from "../components/ExampleOtp";
 
