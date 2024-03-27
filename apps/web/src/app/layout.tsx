@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 import "./input.css";
-
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
