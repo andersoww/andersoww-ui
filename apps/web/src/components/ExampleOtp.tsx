@@ -7,6 +7,7 @@ function ExampleOTP() {
     return (
         <main className="flex min-h-screen flex-col items-center bg-[#232323] w-screen justify-center">
             <div className="w-[450px] bg-[#161819] rounded-xl shadow-lg flex flex-col gap-4 border border-[#252828] text-white">
+
                 <div className="flex flex-col gap-1 p-8 pb-0 items-center">
                     <div className="w-16 h-16 bg-[#0a9d7f] justify-center flex items-center rounded-full mb-4">
                         <Landmark className="w-8 h-8" />

@@ -1,10 +1,10 @@
 
 
-import { ExampleOTP } from "../components/ExampleOtp";
+import { ExampleTabs } from "../components/ExampleTabs";
 
 
 export default function Page(): JSX.Element {
   return (
-    <ExampleOTP />
+    <ExampleTabs />
   );
 }
