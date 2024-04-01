@@ -1,6 +1,6 @@
 import { TabListState } from "@react-stately/tabs";
 import { Node } from "@react-types/shared";
-import { ForwardedRef, MutableRefObject, ReactNode } from "react";
+import { ForwardedRef, HTMLProps, MutableRefObject, ReactNode } from "react";
 
 type Props = {
   children?: ReactNode | null;
@@ -37,7 +37,7 @@ type TabPanelProps = {
   state: TabListState<object>;
 } & Props;
 
-type TabHeaderProps = Props;
+type TabHeaderProps = Props & HTMLProps<"div">;
 
 export type {
   ITab,

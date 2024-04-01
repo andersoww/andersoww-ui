@@ -1,7 +1,7 @@
+import { LayoutGroup } from "framer-motion";
 import { ForwardedRef, HTMLProps, forwardRef, useId } from "react";
 import { twMerge } from "tailwind-merge";
 import { tabs } from "./styles";
-import { LayoutGroup } from "framer-motion";
 
 interface TabListProps extends HTMLProps<HTMLDivElement> {}
 

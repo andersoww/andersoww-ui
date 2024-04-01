@@ -3,6 +3,7 @@ import { tv } from "tailwind-variants";
 export const tabs = tv({
   slots: {
     tabList: ["border-b w-full border-stone-300 flex"],
+    tabHeader: ["py-3"],
     tabContent: ["relative z-10"],
     tabPanel: ["py-3 px-2"],
     tab: [
