@@ -1,7 +1,7 @@
 import { useTabList } from "@react-aria/tabs";
 import { TabListProps, useTabListState } from "@react-stately/tabs";
 import { CollectionChildren } from "@react-types/shared";
-import { ForwardedRef, RefObject, useMemo, useRef } from "react";
+import { Children, ForwardedRef, RefObject, useMemo, useRef } from "react";
 import { TabsRootProps, ValuesType } from "../types";
 
 export function useTabs(
@@ -10,10 +10,16 @@ export function useTabs(
 ) {
   const { classNames, children, ...rest } = props;
 
+  const ChilDren = Children.toArray(children).filter(
+    (item: any) => item.props.title
+  );
+
+  const header = Children.toArray(children)[0];
+
   const domRef = useRef(ref);
 
   const state = useTabListState({
-    children: children as CollectionChildren<object>,
+    children: ChilDren as CollectionChildren<object>,
     ...rest,
   });
 
@@ -36,5 +42,6 @@ export function useTabs(
     state,
     tabListProps,
     values,
+    header,
   };
 }

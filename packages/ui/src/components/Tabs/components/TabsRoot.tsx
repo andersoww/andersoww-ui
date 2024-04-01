@@ -10,7 +10,7 @@ const TabsRoot = forwardRef(
   (props: TabsRootProps, ref: ForwardedRef<HTMLDivElement>) => {
     const { fallback } = props;
 
-    const { state, tabListProps, values } = useTabs(props, ref);
+    const { state, tabListProps, values, header } = useTabs(props, ref);
 
     const TabsProps = {
       state,
@@ -32,6 +32,8 @@ const TabsRoot = forwardRef(
             {tabs}
           </TabList>
         </div>
+
+        {header}
 
         <ClientOnly fallback={fallback}>
           <TabPanel key={state.selectedItem?.key} state={state} />
