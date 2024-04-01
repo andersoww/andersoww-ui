@@ -1,35 +1,49 @@
 import { TabListState } from "@react-stately/tabs";
-import { PropsWithChildren, ReactNode } from "react";
-import { Node } from '@react-types/shared'
+import { Node } from "@react-types/shared";
+import { ForwardedRef, MutableRefObject, ReactNode } from "react";
 
+type Props = {
+  children?: ReactNode | null;
+  classNames?: {
+    tabList?: string;
+    tabContent?: string;
+    tab?: string;
+    tabPanel?: string;
+    cursor?: string;
+  };
+};
 
-interface ITab<T> extends HTMLButtonElement {
-    item: Node<T>;
-    state: any;
-    classNames: {
-        cursor: string;
-    };
-}
+type ValuesType<T = object> = {
+  state: TabListState<T>;
+  listRef?: MutableRefObject<ForwardedRef<HTMLDivElement>>;
+} & Props;
 
-interface TabPanelProps {
-    state: TabListState<object>;
-}
+type TabsRootProps = {
+  fallback?: ReactNode;
+} & Props;
 
-interface TabsRootProps extends PropsWithChildren {
-    classNames?: {
-        cursor: string;
-    };
-    className?: string
-    fallback?: ReactNode
+type TabBaseProps = {
+  title: ReactNode | null;
+  disabled?: boolean;
+} & Props;
 
-}
+type ITab<T> = {
+  item: Node<T>;
+  state: any;
+} & HTMLButtonElement &
+  Props;
 
-interface TabBaseProps {
-    title: ReactNode | null;
-    children?: ReactNode | null;
-    classNames?: object;
-    disabled?: boolean
-}
+type TabPanelProps = {
+  state: TabListState<object>;
+} & Props;
 
+type TabHeaderProps = Props;
 
-export type { TabBaseProps, TabsRootProps, ITab, TabPanelProps }
+export type {
+  ITab,
+  TabBaseProps,
+  TabHeaderProps,
+  TabPanelProps,
+  TabsRootProps,
+  ValuesType,
+};

@@ -1,45 +1,47 @@
-
 import { useTabList } from "@react-aria/tabs";
-import { TabListState, useTabListState } from "@react-stately/tabs";
-import {
-    ForwardedRef,
-    MutableRefObject,
-    RefObject,
-    useMemo,
-    useRef,
-} from "react";
+import { TabListProps, useTabListState } from "@react-stately/tabs";
+import { CollectionChildren } from "@react-types/shared";
+import { Children, ForwardedRef, RefObject, useMemo, useRef } from "react";
+import { TabsRootProps, ValuesType } from "../types";
 
-export type ValuesType<T = object> = {
-    state: TabListState<T>;
-    listRef?: MutableRefObject<ForwardedRef<HTMLDivElement>>;
-    classNames: {
-        cursor: string;
-    };
-};
+export function useTabs(
+  props: TabsRootProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
+  const { classNames, children, ...rest } = props;
 
-export function useTabs(props: any, ref: ForwardedRef<HTMLDivElement>) {
-    const { classNames } = props;
-    const domRef = useRef(ref);
-    const state = useTabListState(props);
+  const ChilDren = Children.toArray(children).filter(
+    (item: any) => item.props.title
+  );
 
-    const { tabListProps } = useTabList(
-        props,
-        state,
-        domRef as RefObject<HTMLDivElement>
-    );
+  const header = Children.toArray(children)[0];
 
-    const values = useMemo<ValuesType>(
-        () => ({
-            state,
-            listRef: domRef,
-            classNames,
-        }),
-        [state, classNames]
-    );
+  const domRef = useRef(ref);
 
-    return {
-        state,
-        tabListProps,
-        values,
-    };
+  const state = useTabListState({
+    children: ChilDren as CollectionChildren<object>,
+    ...rest,
+  });
+
+  const { tabListProps } = useTabList(
+    props as TabListProps<object>,
+    state,
+    domRef as RefObject<HTMLDivElement>
+  );
+
+  const values = useMemo<ValuesType>(
+    () => ({
+      state,
+      listRef: domRef,
+      classNames: classNames || { cursor: "" },
+    }),
+    [state, classNames]
+  );
+
+  return {
+    state,
+    tabListProps,
+    values,
+    header,
+  };
 }

@@ -41,9 +41,11 @@
     "@react-stately/collections": "^3.10.5",
     "@react-stately/tabs": "^3.6.4",
     "@react-types/shared": "^3.22.1",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.22",
-    "tailwind-merge": "^2.2.2"
+    "tailwind-merge": "^2.2.2",
+    "tailwind-variants": "^0.2.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
